@@ -38,10 +38,22 @@ def load_ips_from_log(file_path: str) -> list[str]:
     return ips
 
 
+def exact_unique_count(ips: list[str]) -> int:
+    """
+    Точний підрахунок унікальних IP-адрес за допомогою set.
+    """
+    return len(set(ips))
+
+
+
 if __name__ == "__main__":
     # Тимчасова перевірка роботи завантаження
     BASE_DIR = os.path.dirname(__file__)
     log_path = os.path.join(BASE_DIR, "lms-stage-access.log")
 
     ips = load_ips_from_log(log_path)
+
+    unique_count = exact_unique_count(ips)
+
     print(f"Завантажено IP-адрес: {len(ips)}")
+    print(f"Унікальних IP-адрес (точно): {unique_count}")
